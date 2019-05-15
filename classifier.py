@@ -49,7 +49,7 @@ def get_pretrained_model(arch, hidden_units=512, dropout=0.2):
     
     return model, hidden_units, dropout
 
-def save_model(model, arch, hidden_units, dropout, class_to_idx, epochs=5, path='checkpoint'):
+def save_model(model, arch, hidden_units, dropout, class_to_idx, epochs=5, path=''):
     model.to('cpu')
     
     checkpoint = {
@@ -63,7 +63,7 @@ def save_model(model, arch, hidden_units, dropout, class_to_idx, epochs=5, path=
     
     torch.save(checkpoint, path + '/checkpoint.pth')
 
-def load_checkpoint(checkpoint_path='checkpoint/checkpoint.pth'):
+def load_checkpoint(checkpoint_path='checkpoint.pth'):
     checkpoint = torch.load(checkpoint_path)
     model = available_models.get(checkpoint['arch'], available_models['vgg'])
     
